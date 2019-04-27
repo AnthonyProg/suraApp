@@ -1,0 +1,1 @@
+El directorio contiene todos los scripts involucrados en el desarrollo de la app. Contempla la migracion de la estructura como posibles ajustes al modelo.
