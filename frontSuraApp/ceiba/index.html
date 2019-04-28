@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up Form</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	
     <!-- Main css -->
     <link rel="stylesheet" href="resources/css/style.css">
 </head>
@@ -40,11 +41,15 @@
                                 <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
                                 <input type="text" name="re_pass" id="re_pass" placeholder="Estrato"/>
                             </div>
+							
+							<div class="form-group">
+                                <select class="form-control" name="currencyTypes" id="currencyTypes" ng-model="selectedCurrencyType.typeID"
+                                  ng-options="type.currencyID as type.name for type in currencyType"></select>
+                            </div>
 
                             <div class="form-group">
                                 <!-- <label for="buildingTypes"><i class="zmdi zmdi-money"></i></label> -->
-
-                                <select class="form-control" type="text" name="buildingTypes" id="buildingTypes" ng-model="selectedBuildingType.typeID"
+								<select class="form-control" name="buildingTypes" id="buildingTypes" ng-model="selectedBuildingType.typeID"
                                   ng-options="type.typeID as type.name for type in buildingType"></select>
                             </div>
 
