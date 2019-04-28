@@ -11,13 +11,13 @@ public class Property implements Serializable {
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         @Column(name="idpropiedad")
         private Long idProperty;
-        @OneToOne(fetch=FetchType.LAZY)
+        @OneToOne(fetch=FetchType.EAGER)
         @JoinColumn(name="idtipo")
         private PropertyType propertyType;
-        @ManyToOne(fetch=FetchType.LAZY)
+        @ManyToOne(fetch=FetchType.EAGER)
         @JoinColumn(name="idmoneda")
         private Currency currency;
-        @ManyToOne(fetch=FetchType.LAZY)
+        @ManyToOne(fetch=FetchType.EAGER)
         @JoinColumn(name="idpersona")
         private Client client;
         @Column(name = "valor")

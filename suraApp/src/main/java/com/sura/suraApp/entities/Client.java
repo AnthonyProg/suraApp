@@ -16,9 +16,9 @@ public class Client implements Serializable {
     @Column(name = "nombre")
     private String name;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="idpais")
-    private Country idCountry;
+    private Country country;
 
     public Long getIdClient() {
         return idClient;
@@ -36,19 +36,19 @@ public class Client implements Serializable {
         this.name = name;
     }
 
-    public Country getIdCountry() {
-        return idCountry;
-    }
-
-    public void setIdCountry(Country idCountry) {
-        this.idCountry = idCountry;
-    }
-
     public Long getIdDocument() {
         return idDocument;
     }
 
     public void setIdDocument(Long idDocument) {
         this.idDocument = idDocument;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }
