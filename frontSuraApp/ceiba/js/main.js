@@ -1,69 +1,85 @@
 var app = angular.module('makePolicy', []);
-app.controller('myController',['$scope','$http','$q',function($scope, $http, $q) {
+app.controller('myController', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
-  	//Parameters
-		$scope.customerName = null;
-		$scope.customerID = null;
-		$scope.buildingAddress = null;
-		$scope.buildingType = null;
-		$scope.selectedBuildingType = null;
-		$scope.buildingPrice = null;
-		$scope.currencyType = null;
-		$scope.selectedCurrencyType = null;
-		$scope.buildingStratum = null;
-		$scope.buildingExtension = null;
+        var baseUrl = "http://192.168.101.104:9982";
+        var baseUr2 = "192.168.101.117:8080";
 
 
+        //Definición de funciones
+        $scope.consultarMoneda = consultarMoneda;
+        $scope.consultarTiposPropiedad = consultarTiposPropiedad;
+        $scope.validarEstracto = validarEstracto;
 
-		//Function to get buildingTypes data from back
-		$scope.getBuildingTypes = function() {
-      //Temporal, mientras se dispone del API con datos reales
-					$scope.buildingType = [{typeID: 1,name:"apartamento"},
-				                         {typeID: 2,name:"casa"},
-				                         {typeID: 2,name:"local"}];
-          $scope.selectedBuildingType = angular.copy($scope.buildingType[0]);
-		};
+        //Definición Variables
+        $scope.listaMoneda = [];
+        $scope.listaTipoPropiedad = [];
+        $scope.listaEstracto = [];
+        $scope.selectMoneda;
+        $scope.selectTipoPropiedad;
+        $scope.selectEstracto;
 
-		//Function to get currencyTypes data from back
-		$scope.getCurrencyTypes = function() {
-      //Temporal, mientras se dispone del API con datos reales
-					$scope.currencyType = [{currencyID: 1,name:"COP"},
-				                         {currencyID: 2,name:"DOLLAR"},
-				                         {currencyID: 3,name:"EURO"}];
-          $scope.selectedCurrencyType = angular.copy($scope.currencyType[0]);
+        $scope.customerName = null;
+        $scope.customerID = null;
+        $scope.buildingAddress = null;
+        $scope.buildingType = null;
+        $scope.selectedBuildingType = null;
+        $scope.buildingPrice = null;
+        $scope.currencyType = null;
+        $scope.selectedCurrencyType = null;
+        $scope.buildingStratum = null;
+        $scope.buildingExtension = null;
 
-					$http({
-									method : "GET",
-									url : "http://localhost:9982/GlobalUtil/currencies",
-									// data : JSON.stringify($scope.formData),
-									headers : {
-										'Content-Type' : 'application/json',
-										'Access-Control-Allow-Headers': '*',
-										'Accept' : 'application/json'
-									}
-								}).then(function(response) {
-													$scope.response = JSON.parse(JSON.stringify(response.data));
-													console.log("Success");
-												},
-								function(response) {
-												console.log("Fail");
-												});
-		}
-
-    // Preloaded data for the form
-    $scope.getBuildingTypes();
-		$scope.getCurrencyTypes();
+        $scope.cleanFields = function () {
+            $scope.customerName = null;
+            $scope.customerID = null;
+            $scope.buildingAddress = null;
+            $scope.buildingType = null;
+            $scope.buildingPrice = null;
+            $scope.buildingStratum = null;
+            $scope.buildingExtension = null;
+        }
 
 
-		//Function to reset form
-		$scope.cleanFields = function() {
-			$scope.customerName = null;
-			$scope.customerID = null;
-			$scope.buildingAddress = null;
-			$scope.buildingType = null;
-			$scope.buildingPrice = null;
-			$scope.buildingStratum = null;
-			$scope.buildingExtension = null;
-		}
+        //Implementacion
 
-}]);
+        //---------------PARA COMBO MONEDA
+        function consultarMoneda() {
+            $http.get(baseUrl + '/GlobalUtil/currencies', {}
+            ).success(function (data, status, headers, config) {
+                
+                $scope.listaMoneda = data;
+                console.log("cosultarMoneda estatus"+status);
+                
+            }).error(function (data, status, headers, config) {
+            });
+        }
+        $scope.consultarMoneda();
+
+
+        //---------------PARA COMBO TIPO DE PROPIEDAD 
+        function consultarTiposPropiedad() {
+            $http.get(baseUrl + '/GlobalUtil/propertyTypes', {}
+            ).success(function (data, status, headers, config) {
+                $scope.listaTipoPropiedad = data;
+                 console.log("cosultarMoneda tipos propiedad"+status);
+            }).error(function (data, status, headers, config) {
+            });
+        }
+        $scope.consultarTiposPropiedad();
+
+        //-------------PARA VALIDAR ESTRACTO
+        function validarEstracto() {
+            var num = 5;
+            $http.post(baseUr2 + '/validate', num)
+                    .success(function (data, status, headers, config) {
+
+                        alert("estatus=========>" + status);
+                        $scope.listaEstracto = data;
+
+                    }).error(function (data, status, headers, config) {
+                alert('Error al consultar estractos');
+            });
+        }
+        $scope.validarEstracto();
+
+    }]);

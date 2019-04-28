@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr" ng-app="makePolicy">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form by Colorlib</title>
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <!-- Font Icon -->
+        <link rel="stylesheet" href="resources/fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-    <!-- Main css -->
-    <link rel="stylesheet" href="resources/css/style.css">
-</head>
-<body>
+        <!-- Main css -->
+        <link rel="stylesheet" href="resources/css/style.css">
+    </head>
+    <body>
 
-    <div class="main" ng-controller="myController">
+        <div class="main" ng-controller="myController">
 
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Seguros Inmobiliarios</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" ng-model="customerName" placeholder="Tu nombre"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="documento"><i class="zmdi zmdi-assignment-account"></i></label>
-                                <input type="text" name="documento" id="documento" placeholder="Documento"/>
-                            </div>
+            <!-- Sign up form -->
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <div class="signup-form">
+                            <h2 class="form-title">Seguros Inmobiliarios</h2>
+                            <form method="POST" class="register-form" id="register-form">
+                                <div class="form-group">
+                                    <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="name" id="name" ng-model="customerName" placeholder="Tu nombre"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="documento"><i class="zmdi zmdi-assignment-account"></i></label>
+                                    <input type="text" name="documento" id="documento" placeholder="Documento"/>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-local-store"></i></label>
-                                <input type="text" name="re_pass" id="re_pass" placeholder="Dirección"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
-                                <input type="text" name="re_pass" id="re_pass" placeholder="Estrato"/>
-                            </div>
+                                <div class="form-group">
+                                    <label for="re-pass"><i class="zmdi zmdi-local-store"></i></label>
+                                    <input type="text" name="re_pass" id="re_pass" placeholder="Dirección"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="re-pass"><i class="zmdi zmdi-balance"></i></label>
+                                    <input type="text" name="re_pass" id="re_pass" placeholder="Estrato"/>
+                                </div>
 
-                            <div>
-                                <!-- <label for="buildingTypes"><i class="zmdi zmdi-money"></i></label> -->
+                                <div>
+                                    <!-- <label for="buildingTypes"><i class="zmdi zmdi-money"></i></label> -->
 
-                                <select class="selectpicker" type="text" name="currencyTypes" id="currencyTypes" ng-model="selectedCurrencyType.currencyID"
-                                  ng-options="currency.currencyID as currency.name for currency in currencyType"></select>
-                            </div>
+                                    <select class="selectpicker" type="text" name="currencyTypes" id="currencyTypes" ng-model="listaMoneda"
+                                            data-ng-options="clamoneda as clamoneda.name for clamoneda in listaMoneda">
+                                        <option value="">Seleccione</option>
 
-                            <div class="form-group">
-                                <!-- <label for="buildingTypes"><i class="zmdi zmdi-money"></i></label> -->
 
-                                <select class="form-control" type="text" name="buildingTypes" id="buildingTypes" ng-model="selectedBuildingType.typeID"
-                                  ng-options="type.typeID as type.name for type in buildingType"></select>
-                            </div>
+                                    </select>
+                                </div>
 
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="resources/images/seguros.png" alt="sing up image"></figure>
-                        <a href="https://www.ceiba.com.co/es/" class="signup-image-link">Conoce más de nosotros</a>
+                                <div class="form-group">
+                                    <!-- <label for="buildingTypes"><i class="zmdi zmdi-money"></i></label> -->
+
+                                    <select class="form-control" type="text" name="buildingTypes" id="buildingTypes" ng-model="listaTipoPropiedad"
+                                            data-ng-options="tipopropiedad as tipopropiedad.name for tipopropiedad in listaTipoPropiedad">
+                                        <option value="">Seleccione</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="signup-image">
+                            <figure><img src="resources/images/seguros.png" alt="sing up image"></figure>
+                            <a href="https://www.ceiba.com.co/es/" class="signup-image-link">Conoce más de nosotros</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <!-- JS -->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script src="js/main.js"></script>
-</body>
+            <script src="js/main.js"></script>
+    </body>
 </html>
