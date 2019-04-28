@@ -35,7 +35,8 @@ public class InsuranceRegistrationService {
 
     public Register register(Property property) throws Exception{
         try(Session session = entityManager.unwrap(Session.class)){
-            if(clientExist(property.getClient().getIdClient(), session)){
+            if(loadClient(property.getClient().getIdDocument(), session) != null){
+                property.setClient(loadClient(property.getClient().getIdDocument(), session));
                 propertyRepository.saveAndFlush(property);
                 return createAndSaveRegister(property);
             }else{
@@ -48,13 +49,13 @@ public class InsuranceRegistrationService {
         }
     }
 
-    private boolean clientExist(long clientId, Session session) throws Exception {
+    private Client loadClient(long clientId, Session session) {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
         Root<Client> root = criteriaQuery.from(Client.class);
         criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("idDocument"), clientId));
         Query<Client> query = session.createQuery(criteriaQuery);
-        return query.uniqueResult() != null;
+        return query.uniqueResult();
     }
 
     private Register createAndSaveRegister(Property property){
