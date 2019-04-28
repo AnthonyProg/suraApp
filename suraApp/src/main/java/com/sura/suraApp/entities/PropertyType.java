@@ -1,11 +1,10 @@
 package com.sura.suraApp.entities;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "tipo")
 public class PropertyType implements Serializable {
 
     @Id

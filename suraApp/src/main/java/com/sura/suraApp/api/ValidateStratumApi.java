@@ -13,7 +13,7 @@ public class ValidateStratumApi {
 
     @RequestMapping(value="/validate")
     @ResponseBody
-    public String getClientsResult(@RequestBody Map<String, Integer> map) {
+    public String validateStratum(@RequestBody Map<String, Integer> map) {
         return validateStratumService.validate(map.get("stratum"));
     }
 }

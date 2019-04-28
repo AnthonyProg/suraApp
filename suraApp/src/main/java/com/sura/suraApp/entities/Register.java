@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name = "registro")
 public class Register implements Serializable {
 
     @Id
@@ -14,7 +16,8 @@ public class Register implements Serializable {
     private Date registerDate;
     @Column(name = "valorprima")
     private Double premiumValue;
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="idpropiedad")
     private Property property;
 
     public Long getIdRegister() {

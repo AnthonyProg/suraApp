@@ -3,17 +3,22 @@ package com.sura.suraApp.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "propiedad")
 public class Property implements Serializable {
 
         @Id
         @GeneratedValue(strategy= GenerationType.IDENTITY)
         @Column(name="idpropiedad")
         private Long idProperty;
-        @OneToOne
+        @OneToOne(fetch=FetchType.LAZY)
+        @JoinColumn(name="idtipo")
         private PropertyType propertyType;
-        @ManyToOne
+        @ManyToOne(fetch=FetchType.LAZY)
+        @JoinColumn(name="idmoneda")
         private Currency currency;
-        @ManyToOne
+        @ManyToOne(fetch=FetchType.LAZY)
+        @JoinColumn(name="idpersona")
         private Client client;
         @Column(name = "valor")
         private Double value;
@@ -21,6 +26,10 @@ public class Property implements Serializable {
         private Integer metrics;
         @Column(name = "estrato")
         private Integer stratum;
+        @Column(name = "direccion")
+        private String address;
+
+
 
     public Long getIdProperty() {
         return idProperty;
@@ -76,5 +85,13 @@ public class Property implements Serializable {
 
     public void setStratum(Integer stratum) {
         this.stratum = stratum;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
